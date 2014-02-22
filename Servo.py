@@ -3,8 +3,10 @@ import pwm_drivers.ServoPWM as PWM
 class Servo(object):
     """controls a servo"""
     FREQ = 50.0
-    def __init__(self, channel, quality=4096, start=0.5, end=2.5, debug=False):
+    def __init__(self, channel, quality=4096, start=0.61111111, end=2.3333333333, debug=False):
        self._channel = channel
+       self._start = start
+       self._end = end
        self._debug = debug
        self._quality = quality
        self._pwm = PWM.ServoPWM(0x40, debug=debug).getPWM()
@@ -16,5 +18,5 @@ class Servo(object):
         self._pwm.setPWM(self._channel, 0, pulse)
 
     def setAngle(self, angle):
-        angle = (angle / 180.0) * 2 + 0.5
+        angle = (angle / 180.0) * (self._end - self._start) + self._start
         self._setServoPulse(angle)
