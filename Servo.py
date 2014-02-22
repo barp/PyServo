@@ -1,8 +1,20 @@
-import pwm_drivers.Adafruit_PWM_Servo_Driver as PWM
+import pwm_drivers.ServoPWM as PWM
 
 class Servo(object):
     """controls a servo"""
-    def __init__(self, channel, start=0.5, end=2.5, debug=False):
+    FREQ = 50.0
+    def __init__(self, channel, quality=4096, start=0.5, end=2.5, debug=False):
        self._channel = channel
        self._debug = debug
-       self._pwm = PWM.PWM(0x40, debug=debug)
+       self._quality = quality
+       self._pwm = PWM.PWM(0x40, debug=debug).getPWM()
+
+    def _setServoPulse(self, miliseconds):
+        frame_size = 1000.0 / FREQ
+        tick_size = frame_size / self._quality
+        pulse = int(miliseconds / tick_size)
+        self._pwm.setPWM(self._channel, 0, pulse)
+
+    def setAngle(self, angle):
+        angle = (angle / 180.0) * 2 + 0.5
+        self._setServoPulse(angle)
