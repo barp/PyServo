@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from pyservo.Servo import Servo
+from PyServo.Servo import Servo
 import time
 
 # ===========================================================================
