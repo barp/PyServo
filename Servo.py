@@ -1,4 +1,4 @@
-import pwm_drivers.ServoPWM as PWM
+import pyservo.pwm_drivers.ServoPWM as PWM
 
 class Servo(object):
     """controls a servo"""

@@ -1,6 +1,6 @@
 
-from pwm_drivers.Adafruit_PWM_Servo_Driver import PWM
-from utils.Singleton import Singleton
+from pyservo.pwm_drivers.Adafruit_PWM_Servo_Driver import PWM
+from pyservo.utils.Singleton import Singleton
 
 class ServoPWM(object, metaclass=Singleton):
     def __init__(self, address, debug=False):
