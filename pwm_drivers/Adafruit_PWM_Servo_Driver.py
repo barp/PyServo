@@ -3,12 +3,13 @@
 import time
 import math
 from pwm_drivers.Adafruit_I2C import Adafruit_I2C
+from utils.Singleton import Singleton
 
 # ============================================================================
 # Adafruit PCA9685 16-Channel PWM Servo Driver
 # ============================================================================
 
-class PWM(object):
+class PWM(object, metaclass=Singleton):
     i2c = None
 
     # Registers/etc.
