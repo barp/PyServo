@@ -7,10 +7,10 @@ class Servo(object):
        self._channel = channel
        self._debug = debug
        self._quality = quality
-       self._pwm = PWM.PWM(0x40, debug=debug).getPWM()
+       self._pwm = PWM.ServoPWM(0x40, debug=debug).getPWM()
 
     def _setServoPulse(self, miliseconds):
-        frame_size = 1000.0 / FREQ
+        frame_size = 1000.0 / Servo.FREQ
         tick_size = frame_size / self._quality
         pulse = int(miliseconds / tick_size)
         self._pwm.setPWM(self._channel, 0, pulse)
