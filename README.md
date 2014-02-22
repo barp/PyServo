@@ -1,4 +1,4 @@
-pyservo
+PyServo
 =======
 
 PyServo is a package created for simple usage of the PCA9685
